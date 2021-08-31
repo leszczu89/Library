@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
@@ -21,6 +22,6 @@ public class BookCopy {
     private Book book;
 
     @Column(name = "status")
-    private String status;
+    private Status status;
 
 }

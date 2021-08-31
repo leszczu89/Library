@@ -27,9 +27,8 @@ public class Book {
     @Column(name = "publication_date")
     private LocalDate publicationDate;
 
-    @OneToMany(targetEntity = BookCopy.class,
-    mappedBy = "book",
-    cascade = CascadeType.ALL,
-    fetch = FetchType.EAGER)
-    private List<BookCopy> bookCopies;
+//    @OneToMany(targetEntity = BookCopy.class,
+//            mappedBy = "book")
+//    private List<BookCopy> bookCopies;
+
 }

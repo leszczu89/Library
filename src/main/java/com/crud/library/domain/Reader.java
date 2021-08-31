@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -17,7 +15,7 @@ import java.time.LocalDate;
 public class Reader {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "firstname")
@@ -26,6 +24,6 @@ public class Reader {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "creationdate")
+    @Column(name = "creation_date")
     private LocalDate creationDate;
 }
