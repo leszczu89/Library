@@ -10,4 +10,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface BookRepository extends CrudRepository<Book, Long> {
 
+
 }

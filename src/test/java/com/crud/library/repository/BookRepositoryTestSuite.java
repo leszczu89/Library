@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -16,7 +18,7 @@ public class BookRepositoryTestSuite {
     @Test
     void addBookTest() {
         //Given
-        Book book = new Book();
+        Book book = new Book("a", "b", LocalDate.now());
 
         //When
         bookRepository.save(book);

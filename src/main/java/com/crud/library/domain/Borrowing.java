@@ -31,4 +31,9 @@ public class Borrowing {
     @Column(name = "return_date")
     private LocalDate returningDate;
 
+    public Borrowing(BookCopy bookCopy, Reader reader, LocalDate borrowingDate) {
+        this.bookCopy = bookCopy;
+        this.reader = reader;
+        this.borrowingDate = borrowingDate;
+    }
 }

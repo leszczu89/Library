@@ -9,4 +9,6 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface ReaderRepository extends CrudRepository<Reader, Long> {
+
+    Reader findReaderById(Long id);
 }

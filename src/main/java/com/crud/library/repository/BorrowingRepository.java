@@ -9,4 +9,7 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository
 public interface BorrowingRepository extends CrudRepository<Borrowing, Long> {
+
+    @Override
+    Borrowing save(Borrowing borrowing);
 }

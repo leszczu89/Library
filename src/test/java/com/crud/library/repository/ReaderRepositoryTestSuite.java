@@ -19,15 +19,15 @@ public class ReaderRepositoryTestSuite {
 
 
         //Given
-        Reader reader = new Reader();
+        Reader reader = new Reader("Jan", "Kowalski");
 
         //When
         readerRepository.save(reader);
-
+        Long id = reader.getId();
         //Then
-        assertTrue(readerRepository.existsById(1L));
+        assertTrue(readerRepository.existsById(id));
         //Clean Up
-        readerRepository.delete(reader);
+     //   readerRepository.delete(reader);
 
     }
 }

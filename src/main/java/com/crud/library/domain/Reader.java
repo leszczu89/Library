@@ -26,4 +26,10 @@ public class Reader {
 
     @Column(name = "creation_date")
     private LocalDate creationDate;
+
+    public Reader(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+        this.creationDate = LocalDate.now();
+    }
 }

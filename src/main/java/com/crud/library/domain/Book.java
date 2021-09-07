@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -27,8 +26,14 @@ public class Book {
     @Column(name = "publication_date")
     private LocalDate publicationDate;
 
+    public Book(String title, String author, LocalDate publicationDate) {
+        this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
+    }
+
 //    @OneToMany(targetEntity = BookCopy.class,
 //            mappedBy = "book")
-//    private List<BookCopy> bookCopies;
+//            private List<BookCopy> bookCopies;
 
 }

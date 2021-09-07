@@ -1,7 +1,6 @@
 package com.crud.library.domain.dto;
 
-import com.crud.library.domain.Book;
-import com.crud.library.domain.Status;
+import com.crud.library.domain.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,6 +9,6 @@ import lombok.Getter;
 public class BookCopyDto {
 
     private Long id;
-    private Book book;
-    private Status status;
+    private BookDto book;
+    private String status;
 }

@@ -1,6 +1,7 @@
 package com.crud.library.repository;
 
 import com.crud.library.domain.Borrowing;
+import com.crud.library.domain.Reader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ public class BorrowingRepositoryTestSuite {
     @Test
     void testAddNewBorrow() {
         //Given
+        Reader reader = new Reader();
         Borrowing borrowing = new Borrowing();
         //When
         borrowingRepository.save(borrowing);

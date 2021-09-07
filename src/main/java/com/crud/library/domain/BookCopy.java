@@ -1,12 +1,17 @@
 package com.crud.library.domain;
 
+import com.crud.library.domain.status.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
+@NamedNativeQuery(
+        name = "BookCopy.retrieveBookCopiesWithAvailableStatus",
+        query = "SELECT * FROM copies WHERE status='available' AND book_id=:BOOK",
+        resultClass = BookCopy.class
+)
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +27,10 @@ public class BookCopy {
     private Book book;
 
     @Column(name = "status")
-    private Status status;
+    private String status;
 
+    public BookCopy(Book book, Status status) {
+        this.book = book;
+        this.status = status.getStatus();
+    }
 }
