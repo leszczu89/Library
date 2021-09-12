@@ -32,8 +32,5 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
-//    @OneToMany(targetEntity = BookCopy.class,
-//            mappedBy = "book")
-//            private List<BookCopy> bookCopies;
 
 }

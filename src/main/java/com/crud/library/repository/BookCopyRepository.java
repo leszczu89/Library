@@ -18,4 +18,5 @@ public interface BookCopyRepository extends CrudRepository<BookCopy, Long> {
     List<BookCopy> retrieveBookCopiesWithAvailableStatus(@Param("BOOK")Book book);
 
     BookCopy getBookCopyById(Long id);
+
 }

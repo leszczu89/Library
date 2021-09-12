@@ -22,17 +22,18 @@ public class BookCopyRepositoryTestSuite {
     @Test
     void addBookCopyTest() {
         //Given
-//        Book book1 = new Book();
-//        bookRepository.save(book1);
-//        Long bookId = book1.getId();
-//        BookCopy bookCopy = new BookCopy(book1, Status.AVAILABLE);
-//        //When
-//        bookCopyRepository.save(bookCopy);
-//        Long bookCopyId = bookCopy.getId();
-//        //Then
-//        assertTrue(bookCopyRepository.existsById(bookCopyId));
-//        //Clean up
-//        bookRepository.deleteById(bookId);
-//        bookCopyRepository.deleteById(bookCopyId);
+        Book book1 = new Book();
+        bookRepository.save(book1);
+        Long bookId = book1.getId();
+        BookCopy bookCopy = new BookCopy(book1, Status.AVAILABLE);
+        //When
+        bookCopyRepository.save(bookCopy);
+        Long bookCopyId = bookCopy.getId();
+        //Then
+        assertTrue(bookCopyRepository.existsById(bookCopyId));
+        //Clean up
+
+        bookCopyRepository.deleteById(bookCopyId);
+        bookRepository.deleteById(bookId);
     }
 }

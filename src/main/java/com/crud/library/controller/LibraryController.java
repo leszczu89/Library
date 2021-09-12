@@ -16,6 +16,7 @@ import com.crud.library.mapper.ReaderMapper;
 import com.crud.library.service.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -54,7 +55,6 @@ public class LibraryController {
     @PutMapping(value = "updateBookStatus")
     public BookCopyDto updateBookStatus(@RequestBody BookCopyDto bookCopyDto){
         BookCopy bookCopy = bookCopyMapper.mapToBookCopy(bookCopyDto);
-        dbService.deleteBookCopy(bookCopy);
         BookCopy bookWithChangedStatus = dbService.addBookCopy(bookCopy);
         return bookCopyMapper.mapToBookCopyDto(bookWithChangedStatus);
     }
@@ -65,22 +65,26 @@ public class LibraryController {
         List<BookCopy> availableCopies = dbService.returnAvailableCopies(book);
         return bookCopyMapper.mapToBookCopyDtoList(availableCopies);
     }
-
+    @Transactional
     @PostMapping(value = "addBorrowing")
     public BorrowingDto addBorrowing(@RequestParam Long bookCopyId, @RequestParam Long readerId){
-        BookCopy bookCopy = dbService.getBookCopy(bookCopyId);
-        BookCopy bookCopyBorrowed = dbService.changeBookCopyStatusAsBorrowed(bookCopy);
-        dbService.addBookCopy(bookCopyBorrowed);
+        BookCopy bookCopy = dbService.changeBookCopyStatus(bookCopyId, Status.BORROWED);
         Reader reader = dbService.findReader(readerId);
-        Borrowing newBorrowing = new Borrowing(bookCopyBorrowed, reader, LocalDate.now());
+        Borrowing newBorrowing = new Borrowing(bookCopy, reader, LocalDate.now());
         Borrowing savedBorrowing = dbService.borrowBook(newBorrowing);
         return borrowingsMapper.mapToBorrowingDto(savedBorrowing);
     }
 
     @PutMapping(value = "bookReturn")
-    public BorrowingDto bookReturn(@RequestParam BorrowingDto borrowingDto){
-        Borrowing borrowing = borrowingsMapper.mapToBorrowing(borrowingDto);
-        Borrowing updatedBorrowing = dbService.returnBook(borrowing);
+    public BorrowingDto bookReturn(@RequestParam Long bookCopyId){
+        dbService.changeBookCopyStatus(bookCopyId, Status.AVAILABLE);
+        Borrowing updatedBorrowing = dbService.returnBook(bookCopyId);
         return borrowingsMapper.mapToBorrowingDto(updatedBorrowing);
+    }
+
+    @PutMapping(value = "updateCopyAsLost")
+    public BookCopyDto updateCopyAsLost(@RequestParam Long bookCopyId){
+        BookCopy lostCopy = dbService.changeBookCopyStatus(bookCopyId, Status.LOST);
+        return bookCopyMapper.mapToBookCopyDto(lostCopy);
     }
 }

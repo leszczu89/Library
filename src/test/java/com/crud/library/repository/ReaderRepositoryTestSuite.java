@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -16,8 +14,6 @@ public class ReaderRepositoryTestSuite {
 
     @Test
     void addReaderTest() {
-
-
         //Given
         Reader reader = new Reader("Jan", "Kowalski");
 
@@ -27,7 +23,7 @@ public class ReaderRepositoryTestSuite {
         //Then
         assertTrue(readerRepository.existsById(id));
         //Clean Up
-     //   readerRepository.delete(reader);
+        readerRepository.delete(reader);
 
     }
 }

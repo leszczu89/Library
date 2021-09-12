@@ -2,7 +2,6 @@ package com.crud.library.mapper;
 
 import com.crud.library.domain.Borrowing;
 import com.crud.library.domain.dto.BorrowingDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

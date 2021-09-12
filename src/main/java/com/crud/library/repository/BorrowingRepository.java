@@ -10,6 +10,5 @@ import javax.transaction.Transactional;
 @Repository
 public interface BorrowingRepository extends CrudRepository<Borrowing, Long> {
 
-    @Override
-    Borrowing save(Borrowing borrowing);
+    Borrowing findBorrowingsByBookCopy_Id(Long id);
 }

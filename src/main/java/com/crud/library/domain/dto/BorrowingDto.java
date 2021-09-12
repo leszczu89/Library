@@ -1,7 +1,5 @@
 package com.crud.library.domain.dto;
 
-import com.crud.library.domain.BookCopy;
-import com.crud.library.domain.Reader;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
