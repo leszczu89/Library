@@ -15,7 +15,7 @@ import java.util.List;
 public interface BookCopyRepository extends CrudRepository<BookCopy, Long> {
 
     @Query
-    List<BookCopy> retrieveBookCopiesWithAvailableStatus(@Param("BOOK")Book book);
+    List<BookCopy> retrieveBookCopiesWithAvailableStatus(@Param("BOOK")Long bookId);
 
     BookCopy getBookCopyById(Long id);
 

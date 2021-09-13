@@ -5,10 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Repository
 @Transactional
 public interface ReaderRepository extends CrudRepository<Reader, Long> {
 
-    Reader findReaderById(Long id);
+    Optional<Reader> findReaderById(Long id);
 }
