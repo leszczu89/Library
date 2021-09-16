@@ -43,4 +43,13 @@ public class BookCopyController {
         BookCopy lostCopy = service.changeBookCopyStatus(bookCopyId, Status.LOST);
         return bookCopyMapper.mapToBookCopyDto(lostCopy);
     }
+    @GetMapping(value = "getBookCopy")
+    public BookCopyDto getBookCopyById(@RequestParam Long bookCopyId){
+        BookCopy bookCopy = service.getBookCopyById(bookCopyId);
+        return bookCopyMapper.mapToBookCopyDto(bookCopy);
+    }
+    @DeleteMapping(value = "deleteBookCopy")
+    public void deleteBookCopyById(@RequestParam Long bookCopyId){
+        service.deleteBookCopyById(bookCopyId);
+    }
 }

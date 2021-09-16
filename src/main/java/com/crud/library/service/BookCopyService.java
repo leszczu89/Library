@@ -26,5 +26,12 @@ public class BookCopyService {
         bookCopy.setStatus(status.getStatus());
         return bookCopyRepository.save(bookCopy);
     }
+    public BookCopy getBookCopyById(Long bookCopyId) {
+        return bookCopyRepository.getBookCopyById(bookCopyId);
+    }
+
+    public void deleteBookCopyById(Long bookCopyId){
+        bookCopyRepository.deleteById(bookCopyId);
+    }
 
 }
