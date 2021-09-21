@@ -2,6 +2,7 @@ package com.crud.library.controller;
 
 import com.crud.library.domain.Reader;
 import com.crud.library.domain.dto.ReaderDto;
+import com.crud.library.exception.NoSuchElementException;
 import com.crud.library.mapper.ReaderMapper;
 import com.crud.library.service.ReaderService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,10 @@ public class ReaderController {
     private final ReaderMapper readerMapper;
 
     @PostMapping(value = "addReader", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addReader(@RequestBody ReaderDto readerDto){
+    public ReaderDto addReader(@RequestBody ReaderDto readerDto){
         Reader reader = readerMapper.mapToReader(readerDto);
         service.addReader(reader);
+        return readerMapper.mapToReaderDto(reader);
     }
 
     @DeleteMapping(value = "deleteReader")
@@ -30,8 +32,8 @@ public class ReaderController {
     }
 
     @GetMapping(value = "getReader")
-    public ReaderDto getReader(@RequestParam Long readerId){
-        return readerMapper.mapToReaderDto(service.findReader(readerId).orElseThrow());
+    public ReaderDto getReader(@RequestParam Long readerId) throws NoSuchElementException{
+        return readerMapper.mapToReaderDto(service.findReader(readerId).orElseThrow(NoSuchElementException::new));
     }
 
     @PutMapping(value = "updateReader")
@@ -40,6 +42,4 @@ public class ReaderController {
         Reader savedReader = service.saveReader(reader);
         return readerMapper.mapToReaderDto(savedReader);
     }
-
-
 }

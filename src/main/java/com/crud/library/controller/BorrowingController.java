@@ -41,4 +41,9 @@ public class BorrowingController {
         Borrowing updatedBorrowing = service.returnBook(bookCopyId);
         return borrowingsMapper.mapToBorrowingDto(updatedBorrowing);
     }
+
+    @DeleteMapping(value = "deleteBorrowing")
+    public void deleteBorrowing(@RequestParam Long borrowingId){
+        service.deleteBorrowingById(borrowingId);
+    }
 }

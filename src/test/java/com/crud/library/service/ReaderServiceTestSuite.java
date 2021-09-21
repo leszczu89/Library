@@ -2,8 +2,10 @@ package com.crud.library.service;
 
 import com.crud.library.domain.Reader;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -11,13 +13,14 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ReaderServiceTestSuite {
     @Autowired
     private ReaderService readerService;
 
     @Test
-    public void addReaderTest() {
+    public void testAddReader() {
         //Given
         Reader reader = new Reader("name", "lastname");
         //When
@@ -30,7 +33,7 @@ public class ReaderServiceTestSuite {
         readerService.deleteReader(readerId);
     }
     @Test
-    public void findReaderByIdTest() {
+    public void testFindReaderById() {
         //Given
         Reader reader = new Reader("testName", "testLastname");
         readerService.addReader(reader);
@@ -44,7 +47,7 @@ public class ReaderServiceTestSuite {
         readerService.deleteReader(readerId);
     }
     @Test
-    public void deleteReaderTest() {
+    public void testDeleteReader() {
         //Given
         Reader reader = new Reader("n", "ln");
         readerService.addReader(reader);
@@ -55,7 +58,7 @@ public class ReaderServiceTestSuite {
         assertEquals(Optional.empty(), readerService.findReader(readerId));
     }
     @Test
-    public void saveReaderTest() {
+    public void testSaveReader() {
         //Given
         Reader reader = new Reader("Jan", "Kowalski");
         //When

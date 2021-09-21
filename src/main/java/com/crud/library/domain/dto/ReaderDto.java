@@ -8,10 +8,12 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class ReaderDto {
 
@@ -22,4 +24,10 @@ public class ReaderDto {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
+
+    public ReaderDto(String name, String lastName, LocalDate creationDate) {
+        this.name = name;
+        this.lastName = lastName;
+        this.creationDate = creationDate;
+    }
 }

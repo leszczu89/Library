@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v2/library/book/")
@@ -17,9 +20,10 @@ public class BookController {
     private final BookMapper bookMapper;
 
     @PostMapping(value = "addBook", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addBook(@RequestBody BookDto bookDto){
+    public BookDto addBook(@RequestBody BookDto bookDto){
         Book book = bookMapper.mapToBook(bookDto);
-        service.addBook(book);
+        return bookMapper.mapToBookDto(service.addBook(book));
+
     }
 
     @GetMapping(value = "getBook")
@@ -30,5 +34,16 @@ public class BookController {
     @DeleteMapping(value = "deleteBook")
     public void deleteBook(@RequestParam Long bookId){
         service.deleteBook(bookId);
+    }
+
+    @GetMapping(value = "getAllBooks")
+    public List<BookDto> getAllBooks(){
+        List<Book> books = service.getAllBooks();
+        List<BookDto> bookDtoList = new ArrayList<>();
+        for (Book book : books){
+            BookDto bookDto = bookMapper.mapToBookDto(book);
+            bookDtoList.add(bookDto);
+        }
+        return bookDtoList;
     }
 }

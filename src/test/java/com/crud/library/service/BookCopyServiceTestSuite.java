@@ -4,14 +4,17 @@ import com.crud.library.domain.Book;
 import com.crud.library.domain.BookCopy;
 import com.crud.library.domain.status.Status;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BookCopyServiceTestSuite {
     @Autowired
@@ -20,7 +23,7 @@ public class BookCopyServiceTestSuite {
     private BookService bookService;
 
     @Test
-    public void addBookCopyTest() {
+    public void testAddBookCopy() {
         //Given
         Book book = new Book("t", "a", LocalDate.of(2002, 5, 6));
         bookService.addBook(book);
@@ -38,7 +41,7 @@ public class BookCopyServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void returnAvailableCopiesTest() {
+    public void testReturnAvailableCopies() {
         //Given
         Book book = new Book("title", "author", LocalDate.of(2011, 6, 16));
         bookService.addBook(book);
@@ -60,7 +63,7 @@ public class BookCopyServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void changeBookCopyStatusTest() {
+    public void testChangeBookCopyStatus() {
         //Given
         Book book = new Book("title1", "author1", LocalDate.of(2021, 1, 26));
         bookService.addBook(book);
@@ -78,7 +81,7 @@ public class BookCopyServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void getBookCopyByIdTest(){
+    public void testGetBookCopyById(){
         //Given
         Book book = new Book("title2", "author2", LocalDate.of(2021, 1, 26));
         bookService.addBook(book);
@@ -97,7 +100,7 @@ public class BookCopyServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void deleteBookCopyByIdTest() {
+    public void testDeleteBookCopyById() {
         //Given
         Book book = new Book("title3", "author3", LocalDate.of(2001, 11, 22));
         bookService.addBook(book);

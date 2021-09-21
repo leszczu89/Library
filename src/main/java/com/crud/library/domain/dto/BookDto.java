@@ -22,4 +22,10 @@ public class BookDto {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-DD")
     private LocalDate publicationDate;
+
+    public BookDto(String title, String author, LocalDate publicationDate) {
+        this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
+    }
 }

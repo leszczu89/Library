@@ -4,13 +4,15 @@ import com.crud.library.domain.Book;
 import com.crud.library.domain.BookCopy;
 import com.crud.library.domain.status.Status;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BookCopyRepositoryTestSuite {
 
@@ -20,8 +22,9 @@ public class BookCopyRepositoryTestSuite {
     BookRepository bookRepository;
 
     @Test
-    void addBookCopyTest() {
+    void testAddBookCopy() {
         //Given
+
         Book book1 = new Book();
         bookRepository.save(book1);
         Long bookId = book1.getId();

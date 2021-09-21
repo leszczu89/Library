@@ -3,21 +3,25 @@ package com.crud.library.service;
 import com.crud.library.domain.Book;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BookServiceTestSuite {
     @Autowired
     private BookService bookService;
 
     @Test
-    public void addBookTest() {
+    public void testAddBook() {
         //Given
         Book book = new Book("title", "author", LocalDate.of(2000, 2, 3));
         //When
@@ -31,11 +35,10 @@ public class BookServiceTestSuite {
         try{
             bookService.deleteBook(bookId);
         } catch (Exception e) {
-
         }
     }
     @Test
-    public void getBookTest() {
+    public void testGetBook() {
         //Given
         Book book = new Book("t", "a", LocalDate.of(2020, 4, 12));
         bookService.addBook(book);
@@ -50,7 +53,7 @@ public class BookServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void deleteBookTest(){
+    public void testDeleteBook(){
         //Given
         Book book = new Book("title1", "author1", LocalDate.of(2021, 12, 4));
         bookService.addBook(book);

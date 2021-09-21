@@ -7,13 +7,16 @@ import com.crud.library.domain.Reader;
 import com.crud.library.domain.status.Status;
 import com.crud.library.exception.NoSuchElementException;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BorrowingServiceTestSuite {
     @Autowired
@@ -26,7 +29,7 @@ public class BorrowingServiceTestSuite {
     private ReaderService readerService;
 
     @Test
-    public void borrowBookTest() {
+    public void testBorrowBook() {
         //Given
         Book book = new Book("title", "author", LocalDate.now());
         bookService.addBook(book);
@@ -58,7 +61,7 @@ public class BorrowingServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void returnBookTest(){
+    public void testReturnBook(){
         //Given
         Book book = new Book("t", "a", LocalDate.now());
         bookService.addBook(book);
@@ -89,7 +92,7 @@ public class BorrowingServiceTestSuite {
         bookService.deleteBook(bookId);
     }
     @Test
-    public void deleteBorrowingByIdTest(){
+    public void testDeleteBorrowingById(){
         //Given
         Book book = new Book("title", "author", LocalDate.now());
         bookService.addBook(book);
