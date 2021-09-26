@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,7 +24,6 @@ public class BookController {
     public BookDto addBook(@RequestBody BookDto bookDto){
         Book book = bookMapper.mapToBook(bookDto);
         return bookMapper.mapToBookDto(service.addBook(book));
-
     }
 
     @GetMapping(value = "getBook")
@@ -39,11 +39,7 @@ public class BookController {
     @GetMapping(value = "getAllBooks")
     public List<BookDto> getAllBooks(){
         List<Book> books = service.getAllBooks();
-        List<BookDto> bookDtoList = new ArrayList<>();
-        for (Book book : books){
-            BookDto bookDto = bookMapper.mapToBookDto(book);
-            bookDtoList.add(bookDto);
-        }
-        return bookDtoList;
+
+        return books.stream().map(bookMapper::mapToBookDto).collect(Collectors.toList());
     }
 }
